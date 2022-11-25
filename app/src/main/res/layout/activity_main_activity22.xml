@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbarStyle="outsideOverlay">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="8dp">
+
+
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/switches_cb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox 1"
+            android:checked="true"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/checkbox"/>
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/switches_cb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox 2"
+            android:checked="false"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/checkbox"/>
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/switches_cb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkbox 3"
+            android:checked="false"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/checkbox"/>
+
+
+        <com.rey.material.widget.RadioButton
+            android:id="@+id/switches_rb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radio Button 1"
+            android:checked="true"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/radio_button"/>
+
+        <com.rey.material.widget.RadioButton
+            android:id="@+id/switches_rb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radio Button 2"
+            android:checked="false"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/radio_button"/>
+
+        <com.rey.material.widget.RadioButton
+            android:id="@+id/switches_rb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radio Button 3"
+            android:checked="false"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/radio_button"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+    

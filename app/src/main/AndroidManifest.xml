@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="in.kassapos.a1broilers">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <permission
+        android:name="in.kassapos.a1broilers.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="in.kassapos.kassachicken.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.AppTheme"
+        tools:ignore="GoogleAppIndexingWarning" >
+        <activity
+            android:name="in.kassapos.a1broilers.LoginActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.RegisterActivity"
+            android:label="@string/title_activity_main_activity2" >
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.SplashScreenActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.MainActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.MainActivity22Activity"
+            android:label="@string/title_activity_main_activity22" >
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.OrderDetailsActivity"
+            android:label="@string/title_activity_order_details" >
+        </activity>
+
+        <service android:name="in.kassapos.a1broilers.GCMIntentService" />
+
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="in.kassapos.kassachicken" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="in.kassapos.a1broilers.Notifications"
+            android:label="@string/title_activity_notifications" >
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.OrderHistory"
+            android:label="@string/title_activity_order_history" >
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.FeedbackActivity"
+            android:label="@string/title_activity_feedback" >
+        </activity>
+        <activity
+            android:name="in.kassapos.a1broilers.TermsActivity"
+            android:label="@string/title_activity_terms" >
+        </activity>
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_TJ0qCJPmMMQ1fd" />
+    </application>
+
+</manifest>

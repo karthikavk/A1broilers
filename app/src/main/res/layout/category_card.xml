@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- A CardView that contains a TextView -->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        card_view:cardBackgroundColor="@color/colorPrimaryHalf"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="2dp"
+        android:padding="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/an"
+
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:id="@+id/lin_layout">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:padding="12dp"
+                            android:background="@drawable/button_styles"
+                            android:text="Large Text"
+                            android:textColor="@color/white"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                        <com.rey.material.widget.Button
+                            android:id="@+id/back_button1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:text="BUTTON"
+                            app:rd_enable="true"
+                            app:v_styleId="@array/button_raise_wave"
+                            app:rd_rippleAnimDuration="10000"
+                            app:rd_backgroundAnimDuration="10000"
+                            android:visibility="gone"/>
+
+
+
+                        <!--<com.gc.materialdesign.views.ButtonFloatSmall
+                            android:id="@+id/card_view_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="@color/color_primary"
+
+                            android:gravity="right"
+                            android:layout_gravity="right"
+                            materialdesign:animate="true"
+
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true" />-->
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

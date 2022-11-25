@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.rey.material.widget.RadioButton
+            android:id="@+id/switches_rb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today"
+            android:textSize="15sp"
+            android:checked="true"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/radio_button"/>
+
+        <com.rey.material.widget.RadioButton
+            android:id="@+id/switches_rb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tomorrow"
+            android:textSize="15sp"
+            android:checked="false"
+            android:gravity="center_vertical"
+            app:v_styleId="@array/radio_button"/>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/choosetime"
+        style="@style/Material.Widget.Spinner"
+        android:layout_width="match_parent"
+        android:minHeight="40dp"
+        app:spn_label="@string/choosetime"
+        app:spn_labelTextSize="14dp"
+        app:spn_labelEnable="true"
+        app:spn_labelTextColor="@color/black_semi_transparent"
+        android:layout_height="wrap_content"
+        app:spn_arrowColor="@color/underlineColor"
+        app:spn_dividerColor="@color/underlineColor"
+        app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
+
+    <Spinner
+        android:id="@+id/pincode"
+        style="@style/Material.Widget.Spinner"
+        android:layout_width="match_parent"
+        android:minHeight="40dp"
+        app:spn_label="@string/serviceavailableinlocalities"
+        app:spn_labelTextSize="14dp"
+        app:spn_labelEnable="true"
+        android:layout_height="wrap_content"
+        app:spn_labelTextColor="@color/black_semi_transparent"
+        app:spn_arrowColor="@color/underlineColor"
+        app:spn_dividerColor="@color/underlineColor"
+        app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:text="View"/>
+
+</LinearLayout>

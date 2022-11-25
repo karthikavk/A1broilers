@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:background="@color/color_primary"
+    android:elevation="4dp"
+
+    android:gravity="end"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/halalimg"
+        android:layout_width="58dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dip"
+        android:clickable="true"
+        android:src="@drawable/halal" />
+
+    <include
+        android:id="@+id/cart_layout"
+        layout="@layout/actionbar_badge_layout" />
+
+</android.support.v7.widget.Toolbar>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:elevation="4dp"
+        android:paddingTop="5dp"
+        android:id="@+id/tool_bar"
+
+        >
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/actionbar_notifcation_textview"
+            android:layout_marginTop="0dip"
+            android:layout_marginRight="6dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="3dip"
+            android:text="0"
+            android:textSize="16dip"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:layout_gravity="right"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.gc.materialdesign.views.ScrollView
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Address"
+                style="@android:style/TextAppearance.Medium"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:id="@+id/txt_name"
+                android:textSize="18dp"
+                android:paddingLeft="100dp"
+
+               />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contactno"
+                android:id="@+id/txt_mobile"
+                android:textSize="18dp"
+                android:paddingLeft="100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address1"
+                android:id="@+id/txt_address"
+                android:textSize="18dp"
+                android:paddingLeft="100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address2"
+                android:id="@+id/txt_address2"
+                android:textSize="18dp"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/city"
+                android:id="@+id/txt_city"
+                android:textSize="18dp"
+                android:paddingLeft="100dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/landmark"
+                android:id="@+id/txt_landmark"
+                android:textSize="18dp"
+                android:paddingLeft="100dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Delivery Address"
+                android:id="@+id/txt_changedelivery"
+                android:layout_gravity="right"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="17dp"
+                android:textColor="@android:color/holo_red_dark"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Date"
+                style="@android:style/TextAppearance.Medium"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="date"
+                android:id="@+id/txt_date"
+                android:textSize="18dp"
+                android:paddingLeft="100dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment Type"
+                style="@android:style/TextAppearance.Medium"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash on Delivery"
+
+                android:textSize="18dp"
+                android:paddingLeft="100dp"
+                />
+            <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Time"
+                style="@android:style/TextAppearance.Medium"/>-->
+
+            <com.rey.material.widget.Spinner
+                android:id="@+id/choosetime"
+                style="@style/Material.Widget.Spinner"
+                android:layout_width="match_parent"
+                android:minHeight="40dp"
+                app:spn_label="@string/choosetime"
+                app:spn_labelTextSize="18dp"
+                app:spn_labelEnable="true"
+                app:spn_labelTextColor="@color/black_semi_transparent"
+                android:layout_height="wrap_content"
+                app:spn_arrowColor="@color/underlineColor"
+                app:spn_arrowSize="0dp"
+                app:spn_dividerColor="@android:color/transparent"
+                app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
+
+            <com.rey.material.widget.Spinner
+                android:id="@+id/pincode"
+                style="@style/Material.Widget.Spinner"
+                android:layout_width="match_parent"
+                android:minHeight="40dp"
+                app:spn_label="@string/area"
+                app:spn_labelTextSize="18dp"
+                app:spn_labelEnable="true"
+                android:layout_height="wrap_content"
+                app:spn_labelTextColor="@color/black_semi_transparent"
+                app:spn_arrowColor="@color/underlineColor"
+                app:spn_arrowSize="0dp"
+                app:spn_dividerColor="@android:color/transparent"
+                app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/additional_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:minLines="3"
+                android:hint="Additional Info"
+                android:layout_marginBottom="10dp"
+                app:met_floatingLabel="highlight"
+                app:met_clearButton="true"
+                app:met_baseColor="@color/baseColor"
+                app:met_primaryColor="@color/floatingLabelTextColor"
+                app:met_textColor="@color/text_color"
+                app:met_textColorHint="@color/textColorHint"
+                app:met_errorColor="@color/errorColor"
+                app:met_helperTextColor="@color/helperTextColor"
+                app:met_underlineColor="@color/underlineColor"
+                app:met_floatingLabelTextColor="@color/floatingLabelTextColor"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/checkbox_cod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:text="Cash On Delivery"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <RadioButton
+                    android:id="@+id/checkbox_paytm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Online Payment"
+                    android:visibility="visible"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            </RadioGroup>
+
+        </LinearLayout>
+    </com.gc.materialdesign.views.ScrollView>
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/order_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="25px"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_primary"
+        android:text="@string/conformorder"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+         />
+
+</LinearLayout>
