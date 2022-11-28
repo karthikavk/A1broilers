@@ -18,7 +18,7 @@ import android.net.Uri;
 import android.os.PowerManager;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;

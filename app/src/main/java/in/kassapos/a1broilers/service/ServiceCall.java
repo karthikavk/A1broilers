@@ -3,11 +3,9 @@ package in.kassapos.a1broilers.service;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 import java.io.BufferedReader;
@@ -15,7 +13,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import in.kassapos.chickenshop.api.Advertisment;
+//import in.kassapos.chickenshop.api.Advertisment;
+import in.kassapos.a1broilers.api.Advertisment;
 import in.kassapos.chickenshop.api.Offer;
 import in.kassapos.chickenshop.api.OrderMasterBean;
 import in.kassapos.chickenshop.api.User;
@@ -26,9 +25,11 @@ import in.kassapos.a1broilers.api.MyAsynTask;
 import in.kassapos.a1broilers.api.OrderGroup;
 import in.kassapos.a1broilers.api.ResponseInfo;
 import in.kassapos.a1broilers.fragment.CategoryFragment;
+import com.google.gson.*;
 
 public class ServiceCall {
-   public static String _SERVER = "bismillahproteins.in";
+  // public static String _SERVER = "bismillahproteins.in";
+    public static String _SERVER = "a1broilers.in";
     public static String _URL;
     public static String _ImagePath;
     private static Gson gsondate=new GsonBuilder().setDateFormat("dd/MM/yyyy HH:mm:ss").create();
@@ -42,7 +43,7 @@ public class ServiceCall {
                 _SERVER = "kassaserver.dyndns.org:8480";
                 break;
             case 3:
-                _SERVER="bismillahproteins.in";
+                _SERVER="a1broilers.in";
         }
         _URL="http://"+_SERVER+"/kassachicken/ws/";
         _ImagePath="http://"+_SERVER;
@@ -249,7 +250,8 @@ public class ServiceCall {
                 sb.append(line);
             }
             rd.close();
-            ResponseInfo responseInfo=new Gson().fromJson(sb.toString(),ResponseInfo.class);
+           // ResponseInfo responseInfo=new Gson().fromJson(sb.toString(),ResponseInfo.class);
+            ResponseInfo responseInfo=gsondateonly.fromJson(sb.toString(),ResponseInfo.class);
 
             return responseInfo;
         } catch (Exception e) {

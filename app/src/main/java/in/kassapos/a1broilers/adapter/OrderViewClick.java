@@ -2,7 +2,8 @@ package in.kassapos.a1broilers.adapter;
 
 import android.view.View;
 
-import in.kassapos.chickenshop.api.Category;
+//import in.kassapos.chickenshop.api.Category;
+import in.kassapos.a1broilers.api.Category;
 
 /**
  * Created by KASSAPOS8 on 7/27/2015.

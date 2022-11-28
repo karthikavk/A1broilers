@@ -2,7 +2,9 @@ package in.kassapos.a1broilers.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.graphics.Color;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,11 @@ import com.rey.material.widget.Button;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import in.kassapos.chickenshop.api.Advertisment;
-import in.kassapos.chickenshop.api.Category;
+ import com.bumptech.glide.Glide;
+//import in.kassapos.chickenshop.api.Advertisment;
+import in.kassapos.a1broilers.api.Advertisment;
+//import in.kassapos.chickenshop.api.Category;
+import in.kassapos.a1broilers.api.Category;
 import in.kassapos.a1broilers.R;
 import in.kassapos.a1broilers.image.ImageLoader;
 import in.kassapos.a1broilers.service.ServiceCall;
@@ -92,6 +96,12 @@ abstract public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapt
             ButtonFloat button = holder.button;
             SimpleDateFormat format=new SimpleDateFormat("dd/MM/yy HH:mm");
             textViewName.setText("" + orderMaster.get(position).name);
+            final Category category = orderMaster.get(position);
+            if(true){
+                Glide.with(this.activity).load( ServiceCall._ImagePath + category.imagepath).into(holder.imageView);
+            }else{
+                holder.imageView.setVisibility(View.GONE);
+            }
             holder.ripplebutton.setText( orderMaster.get(position).name);
             holder.ripplebutton.setOnClickListener(new View.OnClickListener() {
                 @Override

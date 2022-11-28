@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
    tools:context="in.kassapos.a1broilers.FeedbackActivity"
     android:orientation="vertical">
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
@@ -15,7 +15,7 @@
         android:id="@+id/tool_bar1"
         >
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
    <!-- <EditText
         android:inputType="textMultiLine"
     android:lines="8"

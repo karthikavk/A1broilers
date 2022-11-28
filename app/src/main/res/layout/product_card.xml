@@ -1,7 +1,7 @@
 
     <!-- A CardView that contains a TextView -->
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
@@ -234,7 +234,7 @@
                         android:layout_height="50dp"
                         android:background="@color/color_primary"
                         materialdesign:iconDrawable="@drawable/shoppingcarticon1" />
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="match_parent"
                         android:id="@+id/card_view_button"
                         android:layout_gravity="bottom"
@@ -256,4 +256,4 @@
             </LinearLayout>
 
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
