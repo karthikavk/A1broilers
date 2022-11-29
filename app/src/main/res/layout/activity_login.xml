@@ -109,18 +109,19 @@
                         app:met_underlineColor="@color/underlineColor"
                         app:met_floatingLabelTextColor="@color/floatingLabelTextColor"/>
 
-                    <com.gc.materialdesign.views.ButtonRectangle
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/email_sign_in_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="25px"
+                        android:layout_alignParentLeft="true"
                         android:layout_marginTop="16dp"
-                        android:background="@color/color_primary"
+                        android:background="@drawable/btn_shape"
                         android:text="@string/sign_in"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
+                        android:textSize="25px"
+                        android:textStyle="bold"
+                    />
 
                 </LinearLayout>
                 <LinearLayout

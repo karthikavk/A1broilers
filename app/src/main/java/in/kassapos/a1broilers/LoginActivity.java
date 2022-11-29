@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -63,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements ToolbarManager.O
             }
         });
 
-        ButtonRectangle loginButton = (ButtonRectangle) findViewById(R.id.email_sign_in_button);
+        AppCompatButton loginButton = (AppCompatButton) findViewById(R.id.email_sign_in_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

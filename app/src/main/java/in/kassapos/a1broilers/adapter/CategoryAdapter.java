@@ -91,7 +91,6 @@ abstract public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapt
             holder.linearLayout.setVisibility(View.VISIBLE);
             holder.textViewName.setVisibility(View.GONE);
             holder.ripplebutton.setVisibility(View.VISIBLE);
-            holder.imageView.setVisibility(View.GONE);
             TextView textViewName = holder.textViewName;
             ButtonFloat button = holder.button;
             SimpleDateFormat format=new SimpleDateFormat("dd/MM/yy HH:mm");

@@ -46,13 +46,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/lin_layout">
-                    <in.kassapos.a1broilers.api.RoundedImageView
-                        android:layout_width="0dp"
+                    <ImageView
+                        android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_weight="0.7"
                         android:id="@+id/imageView"
                         android:src="@drawable/img_cart"
-                        android:layout_gravity="center"
                         />
                     <RelativeLayout
                         android:layout_width="match_parent"
