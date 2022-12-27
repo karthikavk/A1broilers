@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.gc.materialdesign.views.ButtonFloat;
 import com.rey.material.widget.Button;
 
@@ -54,11 +55,11 @@ abstract public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapt
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private final Button ripplebutton;
+       // private final Button ripplebutton;
         TextView textViewName;
         GridView gridView;
         ButtonFloat button;
-        ImageView imageView;
+        SimpleDraweeView imageView;
         LinearLayout linearLayout;
         View itemView;
         Context context;
@@ -67,10 +68,10 @@ abstract public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapt
             super(itemView);
             this.itemView=itemView;
             this.textViewName = (TextView) itemView.findViewById(R.id.textViewName);
-            this.imageView=(ImageView)itemView.findViewById(R.id.imageView);
-            this.linearLayout=(LinearLayout)itemView.findViewById(R.id.lin_layout);
+            this.imageView=(SimpleDraweeView)itemView.findViewById(R.id.imageView);
+           // this.linearLayout=(LinearLayout)itemView.findViewById(R.id.lin_layout);
             this.context=context;
-            this.ripplebutton=(com.rey.material.widget.Button)itemView.findViewById(R.id.back_button1);
+            //this.ripplebutton=(com.rey.material.widget.Button)itemView.findViewById(R.id.back_button1);
        //     this.button = (ButtonFloat) itemView.findViewById(R.id.card_view_button);
         //    this.gridView=(GridView) itemView.findViewById(R.id.gridView);
         }
@@ -78,19 +79,19 @@ abstract public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapt
     @Override
     public CategoryAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.category_card, parent, false);
+                .inflate(R.layout.category_cardnew, parent, false);
 
         MyViewHolder myViewHolder = new MyViewHolder(view,parent.getContext());
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder,final int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
 
         if(position<orderMaster.size()){
-            holder.linearLayout.setVisibility(View.VISIBLE);
-            holder.textViewName.setVisibility(View.GONE);
-            holder.ripplebutton.setVisibility(View.VISIBLE);
+            //holder.linearLayout.setVisibility(View.VISIBLE);
+            holder.textViewName.setVisibility(View.VISIBLE);
+           // holder.ripplebutton.setVisibility(View.VISIBLE);
             TextView textViewName = holder.textViewName;
             ButtonFloat button = holder.button;
             SimpleDateFormat format=new SimpleDateFormat("dd/MM/yy HH:mm");
@@ -101,13 +102,13 @@ abstract public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapt
             }else{
                 holder.imageView.setVisibility(View.GONE);
             }
-            holder.ripplebutton.setText( orderMaster.get(position).name);
+           /* holder.ripplebutton.setText( orderMaster.get(position).name);
             holder.ripplebutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CategoryAdapter.this.onClicked(orderMaster.get(position));
                 }
-            });
+            });*/
             holder.textViewName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

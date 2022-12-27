@@ -1,49 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <com.rey.material.widget.RadioButton
-            android:id="@+id/switches_rb1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Today"
-            android:textSize="15sp"
-            android:checked="true"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            app:v_styleId="@array/radio_button"/>
-
-        <com.rey.material.widget.RadioButton
-            android:id="@+id/switches_rb2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tomorrow"
-            android:textSize="15sp"
-            android:checked="false"
-            android:gravity="center_vertical"
-            app:v_styleId="@array/radio_button"/>
-    </LinearLayout>
-
-    <Spinner
-        android:id="@+id/choosetime"
-        style="@style/Material.Widget.Spinner"
-        android:layout_width="match_parent"
-        android:minHeight="40dp"
-        app:spn_label="@string/choosetime"
-        app:spn_labelTextSize="14dp"
-        app:spn_labelEnable="true"
-        app:spn_labelTextColor="@color/black_semi_transparent"
-        android:layout_height="wrap_content"
-        app:spn_arrowColor="@color/underlineColor"
-        app:spn_dividerColor="@color/underlineColor"
-        app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
 
     <Spinner
         android:id="@+id/pincode"
@@ -58,11 +19,51 @@
         app:spn_arrowColor="@color/underlineColor"
         app:spn_dividerColor="@color/underlineColor"
         app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
+
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/slider"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="3000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp"/>
+
+
+
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:fontFamily="@font/comfortaa"
+        android:textColor="@color/fbutton_color_midnight_blue"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:text="  Shop By Category"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:text="View"/>
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/category_cardnew"
+        android:scrollbars="vertical" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:maxHeight="0dp"
+        />
 
 </LinearLayout>

@@ -20,6 +20,7 @@
             android:layout_width="58dp"
             android:layout_height="50dp"
             android:layout_marginTop="12dip"
+            android:visibility="gone"
             android:clickable="true"
             android:src="@drawable/halal" />
         <TextView
@@ -109,32 +110,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
-        <com.gc.materialdesign.views.ButtonRectangle
+        <Button
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textSize="20px"
             android:layout_marginTop="5dp"
-            android:background="@color/color_primary"
+            android:background="@drawable/button"
             android:text="@string/addmoreitems"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"
             android:layout_weight="1"/>
 
-        <com.gc.materialdesign.views.ButtonRectangle
+        <Button
             android:id="@+id/order_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textSize="20px"
             android:layout_marginTop="5dp"
-            android:background="@color/color_primary"
+            android:background="@drawable/button"
             android:text="@string/chectout"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"
             android:layout_weight="1" />
     </LinearLayout>
 

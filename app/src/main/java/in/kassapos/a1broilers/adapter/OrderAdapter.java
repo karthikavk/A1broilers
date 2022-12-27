@@ -1,6 +1,8 @@
 package in.kassapos.a1broilers.adapter;
 
 import android.app.Activity;
+
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.gc.materialdesign.views.ButtonFloat;
 
 import java.math.BigDecimal;
@@ -16,6 +20,7 @@ import java.text.SimpleDateFormat;
 import in.kassapos.a1broilers.R;
 import in.kassapos.a1broilers.api.Order;
 import in.kassapos.a1broilers.api.OrderGroup;
+import in.kassapos.a1broilers.service.ServiceCall;
 
 /**
  * Created by KASSAPOS8 on 7/27/2015.
@@ -38,15 +43,16 @@ abstract public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyV
         TextView textViewName;
         TextView desc;
         TextView amount,rate,qty;
-       ButtonFloat button;
+        AppCompatImageButton button;
+        SimpleDraweeView imageView;
         Button plus,minus;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
             this.textViewName = (TextView) itemView.findViewById(R.id.textViewName);
-            this.button = (ButtonFloat) itemView.findViewById(R.id.card_view_button);
-          //  this.imageView=(ImageView) itemView.findViewById(R.id.imageView);
+            this.button = (AppCompatImageButton) itemView.findViewById(R.id.card_view_button);
+            this.imageView=(SimpleDraweeView) itemView.findViewById(R.id.imageView);
             this.desc= (TextView) itemView.findViewById(R.id.textViewdesc);
             this.amount=(TextView)itemView.findViewById(R.id.amount);
             this.rate=(TextView)itemView.findViewById(R.id.rate);
@@ -69,7 +75,7 @@ abstract public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyV
     @Override
     public void onBindViewHolder(final MyViewHolder holder,final int position) {
         TextView textViewName = holder.textViewName;
-        ButtonFloat button = holder.button;
+        AppCompatImageButton button = holder.button;
         final Order product= orderGroup.orders.get(position);
         SimpleDateFormat format=new SimpleDateFormat("dd/MM/yy HH:mm");
         textViewName.setText("" + product.product.name);
@@ -90,6 +96,7 @@ abstract public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyV
         }
         holder.amount.setText(new BigDecimal(product.product.rate * product.quantity).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         holder.qty.setText(new BigDecimal(product.quantity).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        Glide.with(activity).load(ServiceCall._ImagePath + product.product.imagepath).into( holder.imageView);
 
         holder.plus.setOnClickListener(new View.OnClickListener() {
             @Override

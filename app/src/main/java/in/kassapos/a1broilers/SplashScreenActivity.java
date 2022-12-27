@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.google.android.gcm.GCMRegistrar;
 import com.google.gson.Gson;
@@ -61,6 +62,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         ProgressView pv_circular = (ProgressView) findViewById(R.id.progress_pv_circular);
         pv_circular.start();
         new BaseActivity(this);
+        Fresco.initialize(this);
         GCMRegistrar.checkDevice(this);
         GCMRegistrar.checkManifest(this);
         GCMRegistrar.register(this, GCMIntentService.SENDER_ID);

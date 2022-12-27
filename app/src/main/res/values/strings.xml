@@ -92,4 +92,5 @@
     <string name="title_activity_order_history">OrderHistory</string>
     <string name="title_activity_feedback">FeedbackActivity</string>
     <string name="title_activity_terms">Terms And Conditions</string>
+    <string name="nav_header_desc">Navigation Header</string>
 </resources>

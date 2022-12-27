@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.widgets.SnackBar;
 
 import com.rey.material.app.ThemeManager;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
     static Toolbar toolbar;
     public static OrderGroup orderGroup;
     public Button amountbtn;
-    public ButtonRectangle orderbtn;
+    public Button orderbtn;
     public CategoryFragment catfrag;
     private final Integer ORDERDETAILACTIVITY=10;
     public static Servicearea[] serviceareas;
@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         if (!BuildConfig.DEBUG) {
             new BaseActivity(this);
         }
@@ -81,12 +83,10 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
         }
         TextView txt=(TextView) toolbar.findViewById(R.id.actionbar_notifcation_textview);
         amountbtn=(Button)findViewById(R.id.amount_button);
-        orderbtn=(ButtonRectangle)findViewById(R.id.order_button);
+        orderbtn=(Button)findViewById(R.id.order_button);
         /*com.rey.material.widget.Button orderbtn1 = (com.rey.material.widget.Button) findViewById(R.id.back_button1);
         orderbtn1.setText("test");*/
-        if( orderbtn.getTextView()!=null) {
-            orderbtn.getTextView().setText("Palani");
-        }
+
         orderbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
     Boolean isopen=false;
     private void navdrawer() {
         TITLES =new String[] {getString(R.string.profile),getString(R.string.orderhistory),getString(R.string.canceledorders),getString(R.string.feedback),getString(R.string.terms),getString(R.string.logout)};
-        ICONS=new int[]{R.drawable.profile,R.drawable.view,R.drawable.delete,R.drawable.feedback,R.drawable.terms,R.drawable.logout};
+        ICONS=new int[]{R.drawable.profile,R.drawable.history,R.drawable.delete,R.drawable.feedback,R.drawable.iconsinfo48,R.drawable.shutdown};
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
 
         mRecyclerView.setHasFixedSize(true);                            // Letting the system know that the list objects are of fixed size
@@ -153,11 +153,7 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
     }
 
     public void OrderAction(){
-        if(orderGroup.deliveryscheduleid==null){
-            showSnackBar("Please select Delivery Time");
-        }else if(orderGroup.serviceareaid==null){
-            showSnackBar("Please select Area");
-        }else{
+
            if(ProductFragment.list!=null&&ProductFragment.list.length>0){
                for(final Product p:ProductFragment.list){
                    if(p.ischanged){
@@ -187,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
                 Intent intent=new Intent(this, OrderDetailsActivity.class);
                 startActivityForResult(intent, ORDERDETAILACTIVITY);
             }
-        }
+
     }
     private void showSnackBar(String data){
         new SnackBar(this,data).show();
@@ -214,11 +210,7 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
     }
     Boolean isitempage=false;
     public void showProducts(Category category){
-        if(orderGroup.deliveryscheduleid==null){
-            showSnackBar("Please select Delivery Time");
-        }else if(orderGroup.serviceareaid==null){
-            showSnackBar("Please select Area");
-        }else{
+
             isitempage=true;
             setTitle(category.name);
             findViewById(R.id.back_button).setVisibility(View.VISIBLE);
@@ -234,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements ProductSelected {
             }else{
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ProductFragment.newInstance()).commit();
             }
-        }
+
 
     }
 

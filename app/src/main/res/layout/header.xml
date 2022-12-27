@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="178dp"
-    android:background="@drawable/background_transparent"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/side_nav_bar"
     android:orientation="vertical"
     android:weightSum="1">
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:contentDescription="@string/nav_header_desc"
+        android:paddingTop="8dp"
+        app:srcCompat="@drawable/an" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -19,16 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:shadowColor="#000000"
-
-            android:shadowRadius="5"
             android:text="Akash Bangad"
-            android:textSize="24dp"
-            android:textStyle="bold"
-
-
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:fontFamily="@font/baloo_tamma_2"
             android:typeface="normal"
-            android:textColor="#ffffff" />
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/email"
@@ -36,23 +38,12 @@
             android:layout_height="wrap_content"
            android:layout_marginLeft="16dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/baloo_tamma_2"
             android:text="akash.bangad93@gmail.com"
-            android:textSize="17sp"
-            android:shadowColor="#000000"
-
-            android:shadowRadius="5"
             android:textStyle="normal"
             android:typeface="normal"
-            android:textColor="#ffffff" />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/an"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="38dp"
-        android:id="@+id/circleView"
 
-        />
 </RelativeLayout>

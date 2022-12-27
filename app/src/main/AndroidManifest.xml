@@ -91,6 +91,9 @@
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_TJ0qCJPmMMQ1fd" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

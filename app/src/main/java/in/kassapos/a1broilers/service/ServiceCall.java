@@ -33,7 +33,7 @@ public class ServiceCall {
     public static String _URL;
     public static String _ImagePath;
     private static Gson gsondate=new GsonBuilder().setDateFormat("dd/MM/yyyy HH:mm:ss").create();
-    private static Gson gsondateonly=new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
+    public static Gson gsondateonly=new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
     static {
         switch (3){
             case 1:
@@ -166,7 +166,7 @@ public class ServiceCall {
             URL url = new URL(_URL + "placeorder");
             URLConnection conn = url.openConnection();
             // String tmp = new Gson().toJson(AppConstants.client.id);
-            conn.addRequestProperty("info", new Gson().toJson(orderGroup));
+            conn.addRequestProperty("info", gsondateonly.toJson(orderGroup));
             new MyAsynTask(activity){
                 protected void onPreExecute() {
                     dialog= ProgressDialog.show(context, "Loading...", "Please Wait...");
@@ -228,7 +228,7 @@ public class ServiceCall {
                 sb.append(line);
             }
             rd.close();
-            ResponseInfo responseInfo=new Gson().fromJson(sb.toString(),ResponseInfo.class);
+            ResponseInfo responseInfo=gsondateonly.fromJson(sb.toString(),ResponseInfo.class);
 
             return responseInfo;
         } catch (Exception e) {

@@ -1,9 +1,12 @@
 package in.kassapos.a1broilers.fragment;
 
+import static in.kassapos.a1broilers.service.ServiceCall.gsondateonly;
+
 import android.app.Activity;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -63,7 +66,7 @@ public class ProductFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             if(mParam1!=null) {
                 //list = new Gson().fromJson(mParam1, Product[].class);
-                list = new Gson().fromJson(mParam1, Product[].class);
+                list =  gsondateonly.fromJson(mParam1, Product[].class);
             }else{
                 list=new Product[]{};
             }
@@ -94,8 +97,7 @@ public class ProductFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         ProductAdapter adapter1 = new ProductAdapter(Arrays.asList(list), getActivity()){
 

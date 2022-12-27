@@ -13,7 +13,7 @@ public class TermsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms);
-        ((WebView)findViewById(R.id.webView)).loadUrl("http://bismillahproteins.com/terms.html");
+        ((WebView)findViewById(R.id.webView)).loadUrl("http://a1broilers.in/terms.html");
     }
 
     @Override

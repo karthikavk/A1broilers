@@ -60,8 +60,8 @@ abstract public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter
             this.textViewName = (TextView) itemView.findViewById(R.id.textViewName);
             this.button = (Button) itemView.findViewById(R.id.card_view_button);
             this.imageView=(ImageView) itemView.findViewById(R.id.imageView);
-            this.desc= (TextView) itemView.findViewById(R.id.textViewdesc);
-            this.amount=(TextView)itemView.findViewById(R.id.amount);
+           // this.desc= (TextView) itemView.findViewById(R.id.textViewdesc);
+           // this.amount=(TextView)itemView.findViewById(R.id.amount);
             this.rate=(TextView)itemView.findViewById(R.id.rate);
             this.qty=(TextView)itemView.findViewById(R.id.quanity);
             this.plus=(Button)itemView.findViewById(R.id.plus);
@@ -74,7 +74,7 @@ abstract public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter
     @Override
     public ProductAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.product_card, parent, false);
+                .inflate(R.layout.product_cardnew, parent, false);
 
         MyViewHolder myViewHolder = new MyViewHolder(view,parent.getContext());
         return myViewHolder;
@@ -104,13 +104,13 @@ abstract public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter
                 ProductAdapter.this.onClicked(orderMaster.get(position), holder.cutsize.getSelectedItemPosition());
             }
         });
-        holder.desc.setText(orderMaster.get(position).description);
+//        holder.desc.setText(orderMaster.get(position).description);
        holder.rate.setText("Rs. "+new BigDecimal(orderMaster.get(position).rate).setScale(2,BigDecimal.ROUND_HALF_UP).toString()+"");
         //holder.rate.setVisibility(View.GONE);
         if (product.qty == null||product.qty<product.minimquantity) {
             product.qty=product.minimquantity.floatValue();
         }
-        holder.amount.setText(new BigDecimal(product.getAmount()).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+    //    holder.amount.setText(new BigDecimal(product.getAmount()).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         holder.qty.setText(new BigDecimal(product.qty).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
         holder.plus.setOnClickListener(new View.OnClickListener() {

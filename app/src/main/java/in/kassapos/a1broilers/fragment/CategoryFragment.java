@@ -2,8 +2,11 @@ package in.kassapos.a1broilers.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,13 +15,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 
+import com.bumptech.glide.Glide;
 import com.gc.materialdesign.widgets.SnackBar;
 import com.google.gson.Gson;
 
 import com.rey.material.widget.RadioButton;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +58,9 @@ public class CategoryFragment extends Fragment {
     private boolean delivryAddressstatus=false;
     private Double distance=Double.valueOf(0);
     CategoryAdapter categoryAdapter;
+    CarouselView carouselView;
+    List<String> sampleImages;
+    private AppCompatImageView adimageview;
 
     /**
      * Use this factory method to create a new instance of
@@ -103,6 +113,8 @@ public class CategoryFragment extends Fragment {
             List<Servicearea> tmp1=new ArrayList<>();
             tmp1.add(new Servicearea("Select Delivery Locality"));
             tmp1.addAll(Arrays.asList(serviceareas));
+            carouselView=v.findViewById(R.id.slider);
+            adimageview=v.findViewById(R.id.imageView3);
             Spinner area = (Spinner) v.findViewById(R.id.pincode);
             ArrayAdapter<Servicearea> adapter = new ArrayAdapter<Servicearea>(this.getActivity(), R.layout.row_spn, tmp1);
             adapter.setDropDownViewResource(R.layout.row_spn);
@@ -124,44 +136,12 @@ public class CategoryFragment extends Fragment {
                 MainActivity.orderGroup.serviceareaid=tmp1.get(0).id;
             }
         }
-        ResponseInfo res1 = ServiceCall.getActiveDeliverySchedule(SplashScreenActivity.companyid);
-        if(res1!=null&&!res1.getIsError()){
-            Deliveryshedule[] deliveryshedules = new Gson().fromJson(res1.getOutput(), Deliveryshedule[].class);
-            MainActivity.deliveryshedules=deliveryshedules;
-            List<Deliveryshedule> tmp=new ArrayList<>();
-            tmp.add(new Deliveryshedule("Select Delivery Time"));
-            tmp.addAll(Arrays.asList(deliveryshedules));
-            Spinner area1 = (Spinner) v.findViewById(R.id.choosetime);
-            ArrayAdapter<Deliveryshedule> adapter = new ArrayAdapter<Deliveryshedule>(this.getActivity(), R.layout.row_spn, tmp);
-            adapter.setDropDownViewResource(R.layout.row_spn);
-            area1.setAdapter(adapter);
-            area1.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    MainActivity.orderGroup.deliveryscheduleid=((Deliveryshedule)adapterView.getSelectedItem()).id;
-                }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                }
-
-            });
-            if(tmp.size()>0){
-                area1.setSelection(0);
-                MainActivity.orderGroup.deliveryscheduleid=tmp.get(0).id;
-            }
-        }
-       /* Spinner time = (Spinner) v.findViewById(R.id.choosetime);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.row_spn, new String[]{"Today","Tomorrow"});
-        adapter.setDropDownViewResource(R.layout.row_spn);
-        time.setAdapter(adapter);*/
 
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
          categoryAdapter = new CategoryAdapter(Arrays.asList(list), getActivity()){
 
@@ -171,7 +151,7 @@ public class CategoryFragment extends Fragment {
             }
         };
         recyclerView.setAdapter(categoryAdapter);
-
+/*
         final CompoundButton rb1 = (RadioButton) v.findViewById(R.id.switches_rb1);
        final CompoundButton rb2 = (RadioButton) v.findViewById(R.id.switches_rb2);
 
@@ -194,7 +174,7 @@ public class CategoryFragment extends Fragment {
         };
 
         rb1.setOnCheckedChangeListener(listener);
-        rb2.setOnCheckedChangeListener(listener);
+        rb2.setOnCheckedChangeListener(listener);*/
 
 
 
@@ -223,11 +203,58 @@ public class CategoryFragment extends Fragment {
         }
     }
 
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            String[] imgary= sampleImages.toArray(new String[0]);
+            //imageView.setImageResource(imgary[position]);
+            Glide.with(getActivity()).load(imgary[position]).into(imageView);
+        }
+    };
 
     public void advertismentSuccess(Advertisment[] p) {
         if(p!=null&&p.length>0){
-            categoryAdapter.setAdvertisments(Arrays.asList(p));
-            categoryAdapter.notifyDataSetChanged();
+            sampleImages=new ArrayList<>();
+
+            Glide.with(getActivity()).load(ServiceCall._ImagePath + p[0].imagepath).into(adimageview);
+           // showMessageOnceDay(p[1].imagepath);
+          //  refreshOrder();
+            for (int i = 1; i <= p.length-1; i++) {
+
+                // DefaultSliderView sliderView = new DefaultSliderView (this);
+                // sliderView.setImageUrl(ServiceCall._ImagePath+p[i].imagepath);
+
+                sampleImages.add(ServiceCall._ImagePath+p[i].imagepath);
+
+                        /*switch (i) {
+                            case 0:
+                                sliderView.setImageUrl(ServiceCall._ImagePath+p[0].imagepath);
+                                break;
+                            case 1:
+                                sliderView.setImageUrl(ServiceCall._ImagePath+p[1].imagepath);
+                                break;
+                            case 2:
+                                sliderView.setImageUrl(ServiceCall._ImagePath+p[2].imagepath);
+                                break;
+                            case 3:
+                                sliderView.setImageUrl(ServiceCall._ImagePath+p[3].imagepath);
+                                break;
+                        }*/
+
+                // sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
+                //sliderView.setDescription("setDescription " + (i + 1));
+                final int finalI = i;
+
+
+                //at last add this view in your layout :
+                //sliderLayout.addSliderView(sliderView);
+               // mShimmerViewContainer.stopShimmerAnimation();
+                //mShimmerViewContainer.setVisibility(View.GONE);
+            }
+            carouselView.setImageListener(imageListener);
+            carouselView.setPageCount(sampleImages.size());
+          //  categoryAdapter.setAdvertisments(Arrays.asList(p));
+          //  categoryAdapter.notifyDataSetChanged();
         }
 
     }

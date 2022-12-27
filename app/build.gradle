@@ -36,6 +36,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.razorpay:checkout:1.6.7'
 
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.synnapps:carouselview:0.1.4'
+    implementation 'com.facebook.fresco:fresco:1.11.0'
 
 }

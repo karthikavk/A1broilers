@@ -16,17 +16,20 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gc.materialdesign.widgets.SnackBar;
+import com.google.gson.Gson;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
-import com.rey.material.widget.Spinner;
+
 
 import org.json.JSONObject;
 
@@ -35,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import in.kassapos.a1broilers.api.ResponseInfo;
 import in.kassapos.chickenshop.api.Offer;
 import in.kassapos.chickenshop.api.User;
 import in.kassapos.a1broilers.adapter.OrderAdapter;
@@ -101,14 +105,69 @@ public class OrderDetailsActivity extends AppCompatActivity  implements PaymentR
         setContentView(R.layout.deliverydetails);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.an3));
+        //toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.an3));
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         ((TextView) toolbar.findViewById(R.id.actionbar_notifcation_textview)).setText(new BigDecimal(MainActivity.orderGroup.getAmount()).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         setTitle("Delivery Details");
         isconfirmpage=true;
-        setaddress();
+        ResponseInfo res1 = ServiceCall.getActiveDeliverySchedule(SplashScreenActivity.companyid);
+        if(res1!=null&&!res1.getIsError()){
+            Deliveryshedule[] deliveryshedules = new Gson().fromJson(res1.getOutput(), Deliveryshedule[].class);
+            MainActivity.deliveryshedules=deliveryshedules;
+            List<Deliveryshedule> tmp=new ArrayList<>();
+            tmp.add(new Deliveryshedule("Select Delivery Time"));
+            tmp.addAll(Arrays.asList(deliveryshedules));
+            Spinner area1 = (Spinner) findViewById(R.id.choosetime);
+            ArrayAdapter<Deliveryshedule> adapter1 = new ArrayAdapter<Deliveryshedule>(OrderDetailsActivity.this, R.layout.row_spn, tmp);
+            adapter1.setDropDownViewResource(R.layout.row_spn);
+            area1.setAdapter(adapter1);
+            area1.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    MainActivity.orderGroup.deliveryscheduleid=((Deliveryshedule)adapterView.getSelectedItem()).id;
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+
+
+
+            });
+            if(tmp.size()>0){
+                area1.setSelection(0);
+                MainActivity.orderGroup.deliveryscheduleid=tmp.get(0).id;
+            }
+        }
+
         final RadioButton checkBox_cash=(RadioButton) findViewById(R.id.checkbox_cod);
         final RadioButton checkBox_paytm=(RadioButton)findViewById(R.id.checkbox_paytm);
+
+        final CompoundButton rb1 = (com.rey.material.widget.RadioButton) findViewById(R.id.switches_rb1);
+        final CompoundButton rb2 = (com.rey.material.widget.RadioButton) findViewById(R.id.switches_rb2);
+
+        CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    rb1.setChecked(rb1 == buttonView);
+                    rb2.setChecked(rb2 == buttonView);
+
+                }
+                if(rb1.isChecked()){
+                    MainActivity.orderGroup.day=0;
+                }else{
+                    MainActivity.orderGroup.day=1;
+                }
+            }
+
+        };
+
+        rb1.setOnCheckedChangeListener(listener);
+        rb2.setOnCheckedChangeListener(listener);
+        setaddress();
         findViewById(R.id.order_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,7 +266,7 @@ public class OrderDetailsActivity extends AppCompatActivity  implements PaymentR
                 OrderGroup om=MainActivity.orderGroup;
                 om.user=SplashScreenActivity.userinfo;
                 JSONObject options = new JSONObject();
-                options.put("name", "Bismillah Proteins");
+                options.put("name", "A1 Broilers ");
                 options.put("description", "Online Payment");
                 //You can omit the image option to fetch the image from dashboard
                 //options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
@@ -260,6 +319,8 @@ public class OrderDetailsActivity extends AppCompatActivity  implements PaymentR
         address2.setText(user.address2);
         landmark.setText(user.landmark);
         city.setText(user.city);
+
+
         findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -341,7 +402,7 @@ public class OrderDetailsActivity extends AppCompatActivity  implements PaymentR
     }
     private void setaddress() {
         User user=SplashScreenActivity.userinfo;
-                ((TextView) findViewById(R.id.txt_name)).setText(user.name);
+                ((TextView) findViewById(R.id.txt_name)).setText(user.name+"\n"+user.contactno+"\n"+user.address1+","+user.address2+"\n"+user.city+user.landmark);
                 ((TextView) findViewById(R.id.txt_mobile)).setText(user.contactno);
                 ((TextView) findViewById(R.id.txt_address)).setText(user.address1);
                 ((TextView) findViewById(R.id.txt_address2)).setText(user.address2);
@@ -361,9 +422,16 @@ public class OrderDetailsActivity extends AppCompatActivity  implements PaymentR
         area.setAdapter(adapter);
         area.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(Spinner spinner, View view, int pos, long l) {
-                MainActivity.orderGroup.serviceareaid = ((Servicearea) spinner.getSelectedItem()).id;
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                MainActivity.orderGroup.serviceareaid = ((Servicearea) adapterView.getSelectedItem()).id;
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+
         });
         if(MainActivity.orderGroup.serviceareaid!=null){
             for(int i=0;i<tmp1.size();i++){
@@ -372,29 +440,16 @@ public class OrderDetailsActivity extends AppCompatActivity  implements PaymentR
                 }
             }
         }
-        Deliveryshedule[] deliveryshedules = MainActivity.deliveryshedules;
-        List<Deliveryshedule> tmp=new ArrayList<>();
-        tmp.add(new Deliveryshedule("Select Delivery Time"));
-        tmp.addAll(Arrays.asList(deliveryshedules));
-        Spinner area1 = (Spinner) findViewById(R.id.choosetime);
-        ArrayAdapter<Deliveryshedule> adapter1 = new ArrayAdapter<Deliveryshedule>(this, R.layout.row_spn, tmp);
-        adapter1.setDropDownViewResource(R.layout.row_spn);
-        area1.setAdapter(adapter1);
-        area1.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(Spinner spinner, View view, int pos, long l) {
-                MainActivity.orderGroup.deliveryscheduleid=((Deliveryshedule)spinner.getSelectedItem()).id;
-            }
-        });
-        if(MainActivity.orderGroup.deliveryscheduleid!=null){
-            for(int i=0;i<tmp.size();i++){
-                if(tmp.get(i).id!=null&&tmp.get(i).id.equalsIgnoreCase(MainActivity.orderGroup.deliveryscheduleid)){
-                    area1.setSelection(i);
-                }
-            }
-        }
-         area1.setEnabled(false);
-        area.setEnabled(false);
+     //   Deliveryshedule[] deliveryshedules = MainActivity.deliveryshedules;
+      //  List<Deliveryshedule> tmp=new ArrayList<>();
+      //  tmp.add(new Deliveryshedule("Select Delivery Time"));
+       // tmp.addAll(Arrays.asList(deliveryshedules));
+      //  Spinner area1 = (Spinner) findViewById(R.id.choosetime);
+
+
+
+        // area1.setEnabled(false);
+        //area.setEnabled(false);
         // ((TextView) findViewById(R.id.txt_pincode)).setText(user.serviceareaid);
     }
 
